@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+<meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <script src="https://kit.fontawesome.com/e48d166edc.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="styles.css"/>
+  
+  
+  <style>
+  
+  @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+body {
+ background-color: #232331;
+ font-family: 'Roboto', sans-serif;
+}
+#captchaBackground {
+ height: 230px;
+ width: 250px;
+ background-color: #2d3748;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ flex-direction: column;
+  padding-bottom: 40px;
+  
+  }
+  
+  
+
+#captchaHeading {
+ color: #08e5ff;
+  height: 50px;
+  width: 250px;
+  background-color: #2d3748;
+  font-weight: bold;
+  display: flex;
+ align-items: center;
+ justify-content: center;
+ flex-direction: column;
+   font-size: 15px;
+  
+}
+#captcha {
+ height: 80%;
+ width: 80%;
+ font-size: 30px;
+ letter-spacing: 3px;
+ margin: auto;
+ display: block;
+ top: 0;
+ bottom: 0;
+ left: 0;
+ right: 0;
+}
+.center {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+}
+    
+  #submitButton1 {
+ margin-top: 1em;
+ margin-bottom: 2em;
+ background-color: #08e5ff;
+ border: 1px;
+    font-weight: bold;
+    }  
+    
+    
+    
+    
+    
+#submitButton {
+ margin-top: 2em;
+ margin-bottom: 2em;
+ background-color: #08e5ff;
+ border: 0px;
+ font-weight: bold;
+}
+#refreshButton {
+ background-color: #08e5ff;
+ border: 0px;
+ font-weight: bold;
+}
+#textBox {
+ height: 25px;
+}
+.incorrectCaptcha {
+ color: #FF0000;
+}
+.correctCaptcha {
+ color: #7FFF00;
+}
+  
+    
+    
+   
+    
+    
+    
+  .page {
+    width: auto;
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: -100vw;
+    overflow-y: auto;
+    z-index: 0;
+    background-color: hsl(0,0%,100%);
+}
+
+  .page:target {
+    left: 0vw;
+    z-index: 1;
+
+    font-family: 'Roboto', sans-serif;
+    }
+ 
+
+
+
+
+.page {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: -100vw;
+    overflow-y: auto;
+    z-index: 0;
+    
+}
+
+  .page:target {
+    left: 0vw;
+    z-index: 1;
+}
+
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+   
+
+.body1{
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+   margin-top:1%;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+     }
+    
+    
+    .countdown1{
+  font-size: 1.2em;
+  font-weight: 800;
+  margin-top: 10%;
+  padding: 0; 
+  justify-content: center;
+      
+      align-items: center;
+    
+}   
+     
+ .countdown2 { 
+   
+   font-size: 0.8em;
+   
+   
+   
+    }
+   
+    
+.download-container{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.download-btn{
+  position: relative;
+  background: #4285F4;
+  color: #fff;
+  width: 260px;
+  padding: 5px 0;
+  text-align: center;
+  font-size: 1.3em;
+  font-weight: 400;
+  text-decoration: none;
+  border-radius: 10px;
+  box-shadow: 0 5px 25px rgba(1 1 1 / 15%);
+  transition:  background 0.3s ease;
+
+}
+.download-btn:hover{
+  background: #1b57bd;
+}
+.download-btn i{
+  margin-left: 5px;
+}
+.countdown{
+  font-size: 1.1em;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+    
+
+    
+    
+    
+.countdown span{
+  color: #0693F6;
+  font-size: 1.5em;
+  font-weight: 800;
+}
+
+.pleaseWait-text{
+  font-size: 0.7em;
+  font-weight: 600;
+  display: none;
+}
+.manualDownload-text{
+  font-size: 1.1em;
+  font-weight: 600;
+  display: none;
+}
+.manualDownload-link{
+  color: #0693F6;
+  font-weight: 600;
+  text-decoration: none;
+} 
+    
+
+  
+  </style>
+  
+  
+  
+  
+  
+  
+  
+  <script>
+function show(shown, hidden) {
+  document.getElementById(shown).style.display='block';
+  document.getElementById(hidden).style.display='none';
+  return false;
+}
+</script>
+
+
+  
+  </head>
+  
+ 
+ <body>
+  
+  
+  
+  
+  
+
+ <div class="center">
+ 
+   <br>
+   
+   <div >
+ <center>
+  
+ 
+
+  <br><br>
+  
+ 
+
+
+    </center>
+  </div>
+   
+   <br>
+   
+   
+   
+   
+ <h1 id="captchaHeading">Captcha Verify</h1>
+ <div id="captchaBackground">
+ <canvas id="captcha">captcha text</canvas>
+ <input id="textBox" type="text" name="text">
+ <div id="buttons">
+ <input id="submitButton" type="submit">
+ <button id="refreshButton" type="submit">Refresh</button>
+ </div>
+ <span id="output"></span>
+ </div>
+ 
+   <br><br>
+   <br>   
+  
+   <br><br>
+   <p> <i class="fas fa-arrow-down"></i> click me fast <i class="fas fa-arrow-down"></i></p>
+ <a href="https://buleor.com/fullpage.php?section=General&pub=892495&ga=a" id="submitButton1"> <i class="fas fa-file-alt"></i> Click Here </a>
+  <br>
+   </div>
+ <script >
+         
+         
+         
+    // document.querySelector() is used to select an element from the document using its ID
+let captchaText = document.querySelector('#captcha');
+var ctx = captchaText.getContext("2d");
+ctx.font = "30px Roboto";
+ctx.fillStyle = "#08e5ff";
+
+let userText = document.querySelector('#textBox');
+let submitButton = document.querySelector('#submitButton');
+let output = document.querySelector('#output');
+let refreshButton = document.querySelector('#refreshButton');
+
+// alphaNums contains the characters with which you want to create the CAPTCHA
+let alphaNums = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+let emptyArr = [];
+// This loop generates a random string of 7 characters using alphaNums
+// Further this string is displayed as a CAPTCHA
+for (let i = 1; i <= 7; i++) {
+ emptyArr.push(alphaNums[Math.floor(Math.random() * alphaNums.length)]);
+}
+var c = emptyArr.join('');
+ctx.fillText(emptyArr.join(''),captchaText.width/4, captchaText.height/2);
+
+// This event listener is stimulated whenever the user press the "Enter" button
+// "Correct!" or "Incorrect, please try again" message is
+// displayed after validating the input text with CAPTCHA
+userText.addEventListener('keyup', function(e) {
+ // Key Code Value of "Enter" Button is 13
+ if (e.keyCode === 13) {
+ if (userText.value === c) {
+ output.classList.add("correctCaptcha");
+ output.innerHTML = "Correct!";
+ } else {
+ output.classList.add("incorrectCaptcha");
+ output.innerHTML = "Incorrect, please try again";
+ }
+ }
+});
+// This event listener is stimulated whenever the user clicks the "Submit" button
+// "Correct!" or "Incorrect, please try again" message is
+// displayed after validating the input text with CAPTCHA
+submitButton.addEventListener('click', function() {
+ if (userText.value === c) {
+ output.classList.add("correctCaptcha");
+ output.innerHTML = "Correct!";
+ 
+   
+      setTimeout(() => {
+    // Your code here
+          
+       window.location.href="#wait";
+          
+}, 1500);
+        
+ 
+
+
+ 
+ 
+ 
+ 
+ 
+ } else {
+ 
+   
+ let refreshArr = [];
+ for (let j = 1; j <= 7; j++) {
+ refreshArr.push(alphaNums[Math.floor(Math.random() * alphaNums.length)]);
+ }
+ ctx.clearRect(0, 0, captchaText.width, captchaText.height);
+ c = refreshArr.join('');
+ ctx.fillText(refreshArr.join(''),captchaText.width/4, captchaText.height/2);
+ output.innerHTML = "";
+
+
+ output.classList.add("incorrectCaptcha");
+ output.innerHTML = "Incorrect, please try again";
+ 
+  }
+});
+   
+   
+   
+   
+   
+   
+
+
+
+
+
+
+   
+   
+   
+   
+// This event listener is stimulated whenever the user press the "Refresh" button
+// A new random CAPTCHA is generated and displayed after the user clicks the "Refresh" button
+refreshButton.addEventListener('click', function() {
+ userText.value = "";
+ let refreshArr = [];
+ for (let j = 1; j <= 7; j++) {
+ refreshArr.push(alphaNums[Math.floor(Math.random() * alphaNums.length)]);
+ }
+ ctx.clearRect(0, 0, captchaText.width, captchaText.height);
+ c = refreshArr.join('');
+ ctx.fillText(refreshArr.join(''),captchaText.width/4, captchaText.height/2);
+ output.innerHTML = "";
+});     
+     
+   
+   
+  </script>
+     
+  
+  
+  <br>
+  
+     <div> 
+    <center>
+  
+ 
+  
+
+      
+      <br><br>
+
+
+   </center> 
+    
+    </div>
+    
+  
+    
+  
+  
+  
+
+  
+  
+
+
+
+<div class="page" Id="wait">
+  
+    
+
+    
+    
+  <center>
+  
+  <br>
+   <br>
+    <br>
+    
+    
+
+  
+  <br><br>
+  
+  
+
+  
+  
+  
+  </center>
+  
+
+  <div class="countdown1">
+   <center>  Fill This Form<br>   <div class="countdown2">To Apply For 49 GB Data</div>
+    
+    
+    
+    
+    <br> <br>
+    
+<div class="countdown2"><i class="fas fa-arrow-down"></i>  Click Here     <i class="fas fa-arrow-down"></i>  </div>
+    </center>
+  </div>
+  
+  <div class="body1">
+  
+ <div class="download-container">
+    <a href="#wait" class="download-btn"> <i class="fas fa-file-alt"></i> Fill Form </a>
+    <div class="countdown"></div>
+    <div class="pleaseWait-text"> Automatically, Redirect To Fill Form,<br> <center> Please Wait... </center> </div>
+    <div class="manualDownload-text">if Not redirect, <a href="" class="manualDownload-link">click here.</a></div>
+  </div>
+
+<script type="text/javascript">
+  const downloadBtn = document.querySelector(".download-btn");
+  const countdown = document.querySelector(".countdown");
+  const pleaseWaitText = document.querySelector(".pleaseWait-text");
+  const manualDownloadText = document.querySelector(".manualDownload-text");
+  const manualDownloadLink = document.querySelector(".manualDownload-link");
+  var timeLeft = 25;
+
+  downloadBtn.addEventListener("click", () => {
+    downloadBtn.style.display = "none";
+    countdown.innerHTML = "Form Will Open In <span>" + timeLeft + "</span> seconds."  //for quick start of countdown
+
+    var downloadTimer = setInterval(function timeCount() {
+      timeLeft -= 1;
+      countdown.innerHTML = "Form Will Open In <span>" + timeLeft + "</span> seconds.";
+
+      if(timeLeft <= 0){
+        clearInterval(downloadTimer);
+        pleaseWaitText.style.display = "block";
+        let download_href = "form.html"; //enter the downlodable file link here
+      
+        setTimeout(() => {
+    // Your code here
+        
+    window.location.href = download_href;
+}, 2000);
+        
+      
+        manualDownloadLink.href = download_href;
+
+        setTimeout(() => {
+          pleaseWaitText.style.display = "none";
+        manualDownloadText.style.display = "block"
+        }, 4000);
+      }
+    }, 1000);
+  });
+  
+  </script> 
+  
+  </div>
+  
+  
+  
+  
+  
+<center>
+    
+
+  
+  
+ <br>
+  <br><br>
+  
+
+  
+  
+  
+  
+  
+
+  
+   <br><br>
+   <p> <i class="fas fa-arrow-down"></i> click me fast <i class="fas fa-arrow-down"></i></p>
+   
+   
+   
+   
+
+
+  
+   <a href="https://cheatingstiffen.com/b5pek62xqp?key=1b55674279a2d96d4e2f169080e7f14c" > <i class="fas fa-file-alt"></i> Click Here </a>
+  
+  
+  
+  
+
+  
+   <br>
+   <br>
+  
+  
+   
+  
+  
+    
+
+
+  
+  </center>
+
+
+</div>
+  
+<script type="text/javascript" src="https://pppbr.com/slider.php?section=General&pub=892495&ga=g&side=right"> function anjr(){
+
+};</script>
+
+<script type="text/javascript" src="https://pjjpp.com/pup.php?section=General&pt=2&pub=892495&ga=g"></script>
+
+  </body>
+  
+
+  </html>
+  
+  
+  
+  
+  
+  
+         
+

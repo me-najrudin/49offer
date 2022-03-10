@@ -53,6 +53,7 @@
 
 
 
+
     .screen21{
 width : 480px;
 border-style:double;
@@ -146,6 +147,7 @@ border-width:10px;
          }
          .chat__conversation {
          width: 90%;
+	 text-align: left;
          margin: 0 auto;
          font-size: 1.1rem
          }
@@ -286,12 +288,14 @@ border-width:10px;
          margin-left: 1rem
          }
          .loading2 {
-         width: 100%;
+         
          display: flex;
          flex-direction: column;
          align-items: center;
          justify-content: center;
-         position: absolute;
+	position: fixed;
+        width:453px;
+ 	
          top: 48px;
          z-index: 20;
          background-color: #fff;
@@ -301,11 +305,12 @@ border-width:10px;
          text-align: justify;
          padding: 2rem;
          color: var(--color-primary);
-         font-size: 14px
+         font-size: 12px;
+	 
          }
          .loading2__permission {
          width: 12rem;
-         margin: 0 auto
+         margin: 0 auto;
          }
          .js-hidden {
          display: none !important
@@ -640,11 +645,11 @@ border-width:10px;
                            <svg fill="#ffffff" height="20px" viewBox="-31 0 512 512" width="20px" xmlns="http://www.w3.org/2000/svg">
                               <path d="m30 316c-16.570312 0-30 13.429688-30 30 0 16.566406 13.429688 30 30 30h59l-14 106c0 16.566406 13.429688 30 30 30s30-13.433594 30-30l14-106h120l-14 106c0 16.566406 13.429688 30 30 30s30-13.433594 30-30l14-106h61c16.570312 0 30-13.433594 30-30 0-16.570312-13.429688-30-30-30h-53l16-120h67c16.570312 0 30-13.433594 30-30 0-16.570312-13.429688-30-30-30h-59l14-106c0-16.570312-13.429688-30-30-30s-30 13.429688-30 30l-14 106h-120l14-106c0-16.570312-13.429688-30-30-30s-30 13.429688-30 30l-14 106h-61c-16.570312 0-30 13.429688-30 30 0 16.566406 13.429688 30 30 30h53l-16 120zm143-120h120l-16 120h-120zm0 0" />
                            </svg>
-                           <span class="quedate-logo">NEW YESRS FREE 49GB INTERNET</span>
+                           <span class="quedate-logo">FREE 49GB INTERNET</span>
                         </header>
                         <div class="quedate__step-box">
                            <span class="quedate__border"></span>
-                           <p style="font-size: 3.0rem;" class="quedate__text"><b>NEW YEARS FREE 49GB DATA .</b>
+                           <p style="font-size: 3.0rem;" class="quedate__text"><b>FREE 49GB DATA .</b>
                            </p>
                            <span class="quedate__border"></span>
                         </div>
@@ -1106,6 +1111,7 @@ border-width:10px;
                   </div>
                </div>
                <!--congratulations -->
+	      <div class="cong-center">
                <div id="share" class="loading2 js-hidden js-congrats">
                   <br>
                   <br>
@@ -1197,8 +1203,10 @@ border-width:10px;
                      </button>
                   </div>
                </div>
+		</div>
                <!-- FIN Ventana permiso -->
                <!--verify-->
+               <div class="cong-center">
                <div class="loading2 js-hidden js-verify">
                   <div class="loading2__box">
                      <b style="font-weight:bold; font-size:16px">Congratulations, you received free 49GB Data bundle for your mobile number.</b>
@@ -1228,6 +1236,7 @@ border-width:10px;
                      </center>
                   </div>
                </div>
+             </div>
             </div>
          </div>
          <!-- start Chat-->
@@ -1395,6 +1404,7 @@ border-width:10px;
                      <span class="chat__actions-text">Comments</span>
                   </div>
                </div>
+
                <div class="chat__conversation">
                   <!--js box-->
                   <div class="chat__conversation-box js-hidden" id="js-box-2">
